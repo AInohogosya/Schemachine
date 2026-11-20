@@ -1,0 +1,38 @@
+{
+  "name": "schemachine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SCHEMACHINE - interactive circuit design + mechanical assembly + real-time physics sandbox",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview",
+    "serve": "node server/index.mjs",
+    "start": "npm run build && node server/index.mjs",
+    "test:headless": "tsx test/headless.ts",
+    "test:components": "tsx test/components.ts",
+    "test:undo": "tsx test/undo.ts",
+    "test:runtime": "tsx test/runtime-integration.ts",
+    "test:render": "tsx test/render-smoke.ts",
+    "test": "tsx test/components.ts && tsx test/undo.ts && tsx test/runtime-integration.ts && tsx test/headless.ts && tsx test/render-smoke.ts"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.169.0",
+    "@dimforge/rapier3d-compat": "0.14.0"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.21",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "tsx": "4.19.2",
+    "typescript": "5.6.3",
+    "vite": "5.4.11",
+    "@types/three": "0.169.0"
+  }
+}
