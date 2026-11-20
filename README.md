@@ -1,27 +1,27 @@
 # SCHEMACHINE
 
-**インタラクティブな回路設計・機械組立・リアルタイム物理シミュレーションをひとつのワークスペースで。**
+**Interactive circuit design, mechanical assembly, and real-time physics simulation in a single workspace.**
 
-SCHEMACHINE は、回路の配置と配線、機械パーツの組立、Rapier ベースの 3D 物理演算をブラウザ上で統合したサンドボックスです。回路の状態をモーター、LED、スピーカー、スイッチなどのハードウェアパーツへ双方向にバインドできます。
+SCHEMACHINE is a sandbox that brings circuit placement and wiring, mechanical part assembly, and 3D physics simulation with Rapier together in the browser. Circuit states can control motors and other hardware through a real-time simulation loop.
 
 <p align="center">
   <img src="thumbnail.png" alt="SCHEMACHINE" width="900">
 </p>
 
-## 主な機能
+## Features
 
-- 回路エディター：バッテリー、抵抗、ダイオード、トランジスタ、MOSFET、オペアンプなどの部品と配線
-- リアルタイム回路解析：スイッチ、モーター、LED、ブザー、リレー、センサーなどを即時シミュレーション
-- 3D メカニカルスタジオ：板、シャーシ、車輪、ギア、翼、スラスター、プロペラなどを配置・結合
-- 物理演算：Three.js による 3D 表示と Rapier による剛体・ジョイント・衝突シミュレーション
-- ジョイント：溶接、ピン、モーター、スライダージョイント
-- 回路とハードウェアの連動：コンポーネント名による双方向バインディング
-- プロジェクト保存：`.schemachine.json` への保存・読み込みとブラウザのローカルストレージへの自動保存
-- Part Studio：カスタムメッシュ生成と STL インポート
-- プリセット：ゲームやサンプル構成から素早く開始
-- Undo/Redo、ズーム、グリッド、インスペクターなどの操作機能
+- Circuit editor: components and wiring for batteries, resistors, diodes, transistors, MOSFETs, operational amplifiers, and more
+- Real-time circuit analysis: immediate simulation of switches, motors, LEDs, buzzers, relays, sensors, and more
+- 3D mechanical studio: place and connect plates, chassis, wheels, gears, wings, thrusters, and propellers
+- Physics engine: 3D rendering with Three.js and rigid-body, joint, collision, and constraint simulation with Rapier
+- Joints: weld, pin, motor, and slider joints
+- Circuit and hardware integration: bidirectional component binding by name
+- Project persistence: save and load `.schemachine.json` files and automatic browser local-storage saving
+- Part Studio: custom mesh generation and STL import
+- Presets: quickly start from games and example configurations
+- Undo/Redo, zoom, grid, inspector, and other editing controls
 
-## 技術スタック
+## Tech Stack
 
 - React 18 / TypeScript
 - Vite 5
@@ -30,13 +30,13 @@ SCHEMACHINE は、回路の配置と配線、機械パーツの組立、Rapier �
 - Express
 - tsx
 
-## 必要環境
+## Requirements
 
-- Node.js 18 以上を推奨
+- Node.js 18 or newer recommended
 - npm
-- モダンブラウザ（WebGL 対応）
+- Modern browser with WebGL support
 
-## セットアップ
+## Setup
 
 ```bash
 git clone https://github.com/AInohogosya/Schemachine.git
@@ -45,40 +45,40 @@ npm install
 npm run dev
 ```
 
-ブラウザで <http://localhost:5173> を開きます。
+Open <http://localhost:5173> in your browser.
 
-Windows では付属の `start.bat`、Linux/macOS では `start.sh` を実行してセットアップと起動をまとめて行えます。
+On Windows, run the included `start.bat`. On Linux or macOS, run `start.sh`. These scripts install dependencies and start the application together.
 
-## 本番ビルド
+## Production Build
 
 ```bash
 npm run build
 npm run preview
 ```
 
-ビルド済みファイルは `dist/` に出力されます。
+The generated files are written to `dist/`.
 
-Express サーバーで配信する場合:
+To serve the build with the Express server:
 
 ```bash
 npm start
 ```
 
-または、ビルド後に以下を実行します。
+Alternatively, build first and then run:
 
 ```bash
 npm run serve
 ```
 
-既定のサーバーポートは環境に応じて設定されます。
+The default server port is selected according to the environment.
 
-## テスト
+## Tests
 
 ```bash
 npm test
 ```
 
-個別のテストも実行できます。
+Run individual test suites:
 
 ```bash
 npm run test:components
@@ -88,46 +88,46 @@ npm run test:headless
 npm run test:render
 ```
 
-型チェックと本番ビルドの確認:
+Run type checking and verify the production build:
 
 ```bash
 npm run typecheck
 npm run build
 ```
 
-## プロジェクトの保存と読み込み
+## Saving and Loading Projects
 
-ツールバーの **Save** を押すと、現在の回路とハードウェア構成を `.schemachine.json` としてダウンロードできます。**Load** からファイルを選択すると復元できます。
+Press **Save** in the toolbar to download the current circuit and hardware configuration as a `.schemachine.json` file. Use **Load** to select a project file and restore it.
 
-また、編集内容は `localStorage` に自動保存されます。従来の `.fable.json` ファイルおよび `fablegame.autosave.v1` データにも互換読み込み対応しています。
+The editor also automatically saves changes to `localStorage`. Loading legacy `.fable.json` files and `fablegame.autosave.v1` data is also supported.
 
-AI が生成するプロジェクトファイルの詳細な形式は [AI_GUIDE.md](AI_GUIDE.md) を参照してください。
+For details about AI-generated project files, see [AI_GUIDE.md](AI_GUIDE.md).
 
-## ディレクトリ構成
+## Directory Structure
 
 ```text
 .
 ├── src/
-│   ├── circuit/       回路コンポーネントと配線
-│   ├── physics/       物理演算・剛体・ジョイント
-│   ├── presets/       プリセットプロジェクト
-│   ├── render/        2D 描画
-│   ├── render3d/      Three.js による 3D 描画
-│   ├── sim/           回路・ランタイムシミュレーション
-│   ├── studio/        パーツスタジオ
-│   ├── sync/          回路とハードウェアの同期
-│   ├── ui/            React UI・エディター・入出力
-│   ├── main.tsx       アプリケーションエントリーポイント
-│   ├── store.ts       状態管理
-│   └── types.ts       共通データ型
-├── server/            Express 配信サーバー
-├── test/              headless・統合・レンダーテスト
-├── AI_GUIDE.md        .schemachine.json 形式ガイド
-├── index.html         HTML エントリーポイント
-├── package.json       スクリプトと依存関係
-└── vite.config.ts     Vite 設定
+│   ├── circuit/       Circuit components and wiring
+│   ├── physics/       Physics simulation, rigid bodies, and joints
+│   ├── presets/       Preset projects
+│   ├── render/        2D rendering
+│   ├── render3d/      3D rendering with Three.js
+│   ├── sim/           Circuit and runtime simulation
+│   ├── studio/        Part Studio
+│   ├── sync/          Circuit and hardware synchronization
+│   ├── ui/            React UI, editor, and input/output
+│   ├── main.tsx       Application entry point
+│   ├── store.ts       State management
+│   └── types.ts       Shared data types
+├── server/            Express delivery server
+├── test/              Headless, integration, and render tests
+├── AI_GUIDE.md        `.schemachine.json` format guide
+├── index.html         HTML entry point
+├── package.json       Scripts and dependencies
+└── vite.config.ts     Vite configuration
 ```
 
-## ライセンス
+## License
 
-このリポジトリには現在ライセンスファイルがありません。利用・再配布・改変の条件はリポジトリ管理者に確認してください。
+SCHEMACHINE is licensed under the [MIT License](LICENSE).
